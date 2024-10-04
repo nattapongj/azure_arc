@@ -120,7 +120,7 @@ Write-Host ""
 # Get kvno from AD Domain
 #
 $SqlMiPod = $SqlMiName + "-0"
-kubectl exec $SqlMiPod -c arc-sqlmi -n $Namespace -- bash -c echo "'$CurrentRegularPassword' | kinit $Account@$Realm"
+kubectl exec $SqlMiPod -c arc-sqlmi -n $Namespace -- bash -c "echo '$CurrentRegularPassword' | kinit $Account@$Realm"
 $Output= kubectl exec $SqlMiPod -c arc-sqlmi -n $Namespace -- kvno $Account@$Realm
 
 # Example output of kvno user@realm : 'user@realm: kvno = 5' Thus we need to extract the last integer from this string.
